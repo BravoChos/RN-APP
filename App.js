@@ -1,60 +1,27 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Button, View, TextInput, Text} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import PlaceInput from "./src/components/PlaceInput/PlaceInput";
+import PlaceList from "./src/components/PlaceList/PlaceList";
 
-//type Props = {};
 export default class App extends Component {
-  state ={
-    placeName:"",
-    places:[]
-  }
+  state = {
+    places: []
+  };
 
-  placeNameChangedHandler = (val) => {
-    //alert(val);
-    this.setState({
-      placeName: val
+  placeAddedHandler = placeName => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat(placeName)
+      };
     });
   };
 
-  placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === "") {
-      return;
-    }
-
-    this.setState(prevState => {
-      return {
-        places: prevState.places.concat(prevState.placeName)
-      }
-    })
-  }
-
   render() {
-    const placesOutput = this.state.places.map((place,index)=>(
-        <Text key={index}>
-          {place}
-        </Text>
-    ));
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput 
-            style={{width: 300}}
-            placeholder="An awesome places"
-            value={this.state.placeName} 
-            onChangeText={this.placeNameChangedHandler} 
-            style ={styles.placeInput}
-          />
-          <Button title="Add" style={styles.placeButton} onPress={this.placeSubmitHandler}/>
-        </View>
-        <View>
-          {placesOutput}
-        </View>
+        <PlaceInput onPlaceAdded={this.placeAddedHandler} />
+        <PlaceList places={this.state.places} />
       </View>
     );
   }
@@ -63,22 +30,9 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding:20,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-  },
-  inputContainer: {
-    //flex: 1,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  placeInput: {
-    width: "70%"
-  },
-  placeButton: {
-    width: "30%"
+    padding: 26,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start"
   }
 });
