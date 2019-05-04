@@ -9,13 +9,13 @@ const startTabs = () => {
         Navigation.startTabBasedApp({
             tabs : [
                 {
-                    screen: "rnapp.FindPlace",
+                    screen: "rnapp.FindPlaceScreen",
                     label: "Find Place",
                     title: "Find Place",
                     icon: sources[0]
                 },
                 {
-                    screen: "rnapp.SharePlace",
+                    screen: "rnapp.SharePlaceScreen",
                     label: "Share Place",
                     title: "Share Place",
                     icon: sources[1]
