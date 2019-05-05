@@ -1,7 +1,5 @@
 export {
     addPlace,
-    deletePlace,
-    selectPlace,
-    deselectPlace
+    deletePlace
 }
 from './places'
