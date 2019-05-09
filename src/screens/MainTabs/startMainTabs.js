@@ -11,7 +11,7 @@ const startTabs = () => {
         Navigation.startTabBasedApp({
             tabs: [
                 {
-                    screen: "awesome-places.FindPlaceScreen",
+                    screen: "rnapp.FindPlaceScreen",
                     label: "Find Place",
                     title: "Find Place",
                     icon: sources[0],
@@ -26,7 +26,7 @@ const startTabs = () => {
                     }
                 },
                 {
-                    screen: "awesome-places.SharePlaceScreen",
+                    screen: "rnapp.SharePlaceScreen",
                     label: "Share Place",
                     title: "Share Place",
                     icon: sources[1],
@@ -41,11 +41,17 @@ const startTabs = () => {
                     }
                 }
             ],
+            tabsStyle: {
+                tabBarSelectedButtonColor: "orange"
+            },
             drawer: {
                 left: {
-                    screen: "awesome-places.SideDrawer"
+                    screen: "rnapp.SideDrawer"
                 }
-            }
+            },
+            appStyle: {
+                tabBarSelectedButtonColor: "orange"
+            },
         });
     });
 };
