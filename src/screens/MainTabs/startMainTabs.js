@@ -1,14 +1,15 @@
 import { Navigation } from 'react-native-navigation';
+import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const startTabs = () => {
     Promise.all([
-        Icon.getImageSource("md-map", 30),
-        Icon.getImageSource("ios-share-alt", 30),
-        Icon.getImageSource("ios-menu", 30)
-    ]).then( sources => {
+        Icon.getImageSource(Platform.OS === 'android' ? "md-map" : "ios-map", 30),
+        Icon.getImageSource(Platform.OS === 'android' ? "md-share-alt" : "ios-share", 30),
+        Icon.getImageSource(Platform.OS === 'android' ? "md-menu" : "ios-menu", 30)
+    ]).then(sources => {
         Navigation.startTabBasedApp({
-            tabs : [
+            tabs: [
                 {
                     screen: "rnapp.FindPlaceScreen",
                     label: "Find Place",
@@ -38,17 +39,21 @@ const startTabs = () => {
                             }
                         ]
                     }
-                },
+                }
             ],
+            tabsStyle: {
+                tabBarSelectedButtonColor: "orange"
+            },
             drawer: {
                 left: {
-                    screen: "rnapp.SideDrawer" 
-                }    
-            }
+                    screen: "rnapp.SideDrawer"
+                }
+            },
+            appStyle: {
+                tabBarSelectedButtonColor: "orange"
+            },
         });
-    })
-}
+    });
+};
 
 export default startTabs;
-
-
