@@ -11,8 +11,9 @@ class FindPlaceScreen extends Component {
 
     state = {
         placesLoaded: false,
-        removeAnim: new Animated.Value(1)
-    };
+        removeAnim: new Animated.Value(1),
+        placesAnim: new Animated.Value(0)
+      };
 
     constructor(props) {
         super(props);
@@ -22,21 +23,25 @@ class FindPlaceScreen extends Component {
     onNavigatorEvent = event => {
         if (event.type === "NavBarButtonPress") {
             if (event.id === "sideDrawerToggle") {
-            this.props.navigator.toggleDrawer({
-                side: "left"
+                this.props.navigator.toggleDrawer({
+                    side: "left"
             });
             }
         }
     };
 
     placesLoadedHandler = () => {
-
-    }
+        Animated.timing(this.state.placesAnim, {
+          toValue: 1,
+          duration: 5000,
+          useNativeDriver: true
+        }).start();
+      };
 
     placesSearchHandler = () => {
         Animated.timing(this.state.removeAnim, {
             toValue: 0,
-            duration: 500,
+            duration: 5000,
             useNativeDriver: true
         }).start(() => {
             this.setState({
@@ -51,10 +56,10 @@ class FindPlaceScreen extends Component {
             return place.key === key;
         });
         this.props.navigator.push({
-            screen: "awesome-places.PlaceDetailScreen",
+            screen: "rnapp.PlaceDetailScreen",
             title: selPlace.name,
             passProps: {
-            selectedPlace: selPlace
+                selectedPlace: selPlace
             }
         });
     };
@@ -82,10 +87,16 @@ class FindPlaceScreen extends Component {
 
         if (this.state.placesLoaded) {
             content = (
+                <Animated.View
+                style={{
+                  opacity: this.state.placesAnim
+                }}
+              >
                 <PlaceList
-                places={this.props.places}
-                onItemSelected={this.itemSelectedHandler}
+                  places={this.props.places}
+                  onItemSelected={this.itemSelectedHandler}
                 />
+              </Animated.View>
             );
         }
 
