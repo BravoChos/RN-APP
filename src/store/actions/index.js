@@ -3,3 +3,5 @@ export {
     deletePlace
 }
 from './places'
+
+export { tryAuth } from './auth';
