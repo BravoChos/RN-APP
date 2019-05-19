@@ -1,13 +1,33 @@
 import React, { Component } from "react";
-import { View, Image, Button, StyleSheet, Text } from "react-native";
+import { View, Image, Button, StyleSheet, Text, Dimensions } from "react-native";
+import MapView, { PROVIDER_GOOGLE }  from "react-native-maps";
 
 class PickLocation extends Component {
+  state = {
+    focusedLocation: {
+      latitude: 37.7900352,
+      longitude: -122.4013726,
+      latitudeDelta: 0.0122,
+      longitudeDelta:
+        Dimensions.get("window").width /
+        Dimensions.get("window").height *
+        0.0122
+    },
+    locationChosen: false
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.placeholder}>
-          <Text>Map</Text>
-        </View>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          initialRegion={this.state.focusedLocation}
+          region={this.state.focusedLocation}
+          style={styles.map}
+          onPress={this.pickLocationHandler}
+        >
+
+        </MapView>
         <View style={styles.button}>
           <Button title="Locate Me" onPress={() => alert('Pick Location!')} />
         </View>
@@ -21,12 +41,9 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center"
   },
-  placeholder: {
-    borderWidth: 1,
-    borderColor: "black",
-    backgroundColor: "#eee",
-    width: "80%",
-    height: 150
+  map: {
+    width: "100%",
+    height: 250
   },
   button: {
     margin: 8
