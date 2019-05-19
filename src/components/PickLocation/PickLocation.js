@@ -16,7 +16,27 @@ class PickLocation extends Component {
     locationChosen: false
   };
 
+  pickLocationHandler = event => {
+    const coords = event.nativeEvent.coordinate;
+    this.setState(prevState => {
+      return {
+        focusedLocation: {
+          ...prevState.focusedLocation,
+          latitude: coords.latitude,
+          longitude: coords.longitude
+        },
+        locationChosen: true
+      };
+    });
+  };  
+
   render() {
+    let marker = null;
+
+    if (this.state.locationChosen) {
+      marker = <MapView.Marker coordinate={this.state.focusedLocation} />;
+    }
+    
     return (
       <View style={styles.container}>
         <MapView
@@ -26,7 +46,7 @@ class PickLocation extends Component {
           style={styles.map}
           onPress={this.pickLocationHandler}
         >
-
+          {marker}
         </MapView>
         <View style={styles.button}>
           <Button title="Locate Me" onPress={() => alert('Pick Location!')} />
