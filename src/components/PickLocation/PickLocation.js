@@ -18,6 +18,11 @@ class PickLocation extends Component {
 
   pickLocationHandler = event => {
     const coords = event.nativeEvent.coordinate;
+    this.map.animateToRegion({
+      ...this.state.focusedLocation,
+      latitude: coords.latitude,
+      longitude: coords.longitude
+    });
     this.setState(prevState => {
       return {
         focusedLocation: {
@@ -42,9 +47,9 @@ class PickLocation extends Component {
         <MapView
           provider={PROVIDER_GOOGLE}
           initialRegion={this.state.focusedLocation}
-          region={this.state.focusedLocation}
           style={styles.map}
           onPress={this.pickLocationHandler}
+          ref={ref => this.map = ref}
         >
           {marker}
         </MapView>
