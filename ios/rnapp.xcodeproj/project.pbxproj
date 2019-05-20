@@ -39,6 +39,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8C1B5D1B24C7742E779E0B3A /* libPods-rnapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C916B1EBA46DA8CA23C23BC /* libPods-rnapp.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		D34CED0A2292E18C00A46A48 /* AirGoogleMaps in Resources */ = {isa = PBXBuildFile; fileRef = D34CED092292E18C00A46A48 /* AirGoogleMaps */; };
 		D3732CAE22913F180050C32B /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3732C8422913F180050C32B /* GoogleMapsBase.framework */; };
 		D3732CB122913FE50050C32B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3732CAF22913FE30050C32B /* GoogleMaps.framework */; };
 		D3732CB222913FE50050C32B /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3732CB022913FE50050C32B /* GoogleMapsCore.framework */; };
@@ -58,7 +59,6 @@
 		D3732CCE22914D510050C32B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3732CCD22914D510050C32B /* QuartzCore.framework */; };
 		D3732CD022914D5D0050C32B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3732CCF22914D5D0050C32B /* SystemConfiguration.framework */; };
 		D3732CD222914D700050C32B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3732CD122914D700050C32B /* UIKit.framework */; };
-		D3732D4A229161D30050C32B /* AirGoogleMaps in Resources */ = {isa = PBXBuildFile; fileRef = D3732D49229161D20050C32B /* AirGoogleMaps */; };
 		D38809FF2274983700C66B08 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D38809FC227497BF00C66B08 /* libRNVectorIcons.a */; };
 		D3880A01227499DB00C66B08 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3880A00227499DB00C66B08 /* Ionicons.ttf */; };
 		D3880A6F2274B49100C66B08 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3880A6C2274B41200C66B08 /* libReactNativeNavigation.a */; };
@@ -400,6 +400,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8553F414EF63F4EE7C1537B5 /* Pods-rnapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnapp.debug.xcconfig"; path = "Target Support Files/Pods-rnapp/Pods-rnapp.debug.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		D34CED092292E18C00A46A48 /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AirGoogleMaps; sourceTree = "<group>"; };
 		D3732C8422913F180050C32B /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		D3732CAF22913FE30050C32B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		D3732CB022913FE50050C32B /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
@@ -419,7 +420,6 @@
 		D3732CCD22914D510050C32B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D3732CCF22914D5D0050C32B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D3732CD122914D700050C32B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D3732D49229161D20050C32B /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
 		D38809C9227497BE00C66B08 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		D3880A00227499DB00C66B08 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		D3880A422274B41200C66B08 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
@@ -710,7 +710,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				D3732D49229161D20050C32B /* AirGoogleMaps */,
+				D34CED092292E18C00A46A48 /* AirGoogleMaps */,
 				D3732CB322914C060050C32B /* GoogleMaps.bundle */,
 				D3732CAF22913FE30050C32B /* GoogleMaps.framework */,
 				D3732CB022913FE50050C32B /* GoogleMapsCore.framework */,
@@ -1263,7 +1263,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				D3880A01227499DB00C66B08 /* Ionicons.ttf in Resources */,
-				D3732D4A229161D30050C32B /* AirGoogleMaps in Resources */,
+				D34CED0A2292E18C00A46A48 /* AirGoogleMaps in Resources */,
 				D3732CB422914C060050C32B /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
