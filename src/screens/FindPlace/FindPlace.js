@@ -33,7 +33,7 @@ class FindPlaceScreen extends Component {
     placesLoadedHandler = () => {
         Animated.timing(this.state.placesAnim, {
           toValue: 1,
-          duration: 5000,
+          duration: 1500,
           useNativeDriver: true
         }).start();
       };
@@ -41,7 +41,7 @@ class FindPlaceScreen extends Component {
     placesSearchHandler = () => {
         Animated.timing(this.state.removeAnim, {
             toValue: 0,
-            duration: 5000,
+            duration: 1500,
             useNativeDriver: true
         }).start(() => {
             this.setState({
@@ -55,6 +55,7 @@ class FindPlaceScreen extends Component {
         const selPlace = this.props.places.find(place => {
             return place.key === key;
         });
+        console.log('findplace ', selPlace)
         this.props.navigator.push({
             screen: "rnapp.PlaceDetailScreen",
             title: selPlace.name,

@@ -15,26 +15,26 @@ class SharePlaceScreen extends Component {
       navBarButtonColor: "orange"
     }
 
-  state = {
-    controls: {
-      placeName: {
-        value: "",
-        valid: false,
-        touched: false,
-        validationRules: {
-          notEmpty: true
+    state = {
+      controls: {
+        placeName: {
+          value: "",
+          valid: false,
+          touched: false,
+          validationRules: {
+            notEmpty: true
+          }
         },
         location: {
           value: null,
           valid: false
         }
       }
-    }
-  };
+    };
 
     constructor(props) {
-        super(props);
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+      super(props);
+      this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
 
     onNavigatorEvent = event => {
@@ -85,6 +85,7 @@ class SharePlaceScreen extends Component {
     };
 
     render() {
+      console.log(this.state)
         return (
             <ScrollView>
             <View style={styles.container}>
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPlace: (placeName) => dispatch(addPlace(placeName))
+        onAddPlace: (placeName, location) => dispatch(addPlace(placeName, location))
     };
 }
 
