@@ -85,10 +85,9 @@ class SharePlaceScreen extends Component {
     };
 
     render() {
-      console.log(this.state)
         return (
-            <ScrollView>
-            <View style={styles.container}>
+          <ScrollView>
+            <View style={styles.container}> 
               <MainText>
                 <HeadingText>Share a Place with us!</HeadingText>
               </MainText>
