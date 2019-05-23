@@ -1,7 +1,10 @@
 # OSX
 #
 .DS_Store
-
+ios/GoogleMaps.framework/
+ios/GoogleMapsBase.framework/
+ios/GoogleMapsCore.framework/
+ios/Podfile/
 # Xcode
 #
 build/

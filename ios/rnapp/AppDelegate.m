@@ -14,10 +14,16 @@
 
 #import <React/RCTRootView.h>
 
+//google maps config for ios
+#import <GoogleMaps/GoogleMaps.h>
+//@import GoogleMaps;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [GMSServices provideAPIKey:@"AIzaSyD3-9f-KHFLOZWlrfxf-4kvzM390B5wN0s"]; // add this line using the api key obtained from Google Console
+
   NSURL *jsCodeLocation;
 #ifdef DEBUG
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
@@ -29,6 +35,7 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
   return YES;
+
 }
 
 @end
