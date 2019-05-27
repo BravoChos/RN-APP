@@ -6,7 +6,7 @@ import startMainTabs from '../MainTabs/startMainTabs';
 import DefaultInput from "../../components/UI/DefaultInput/DefaultInput";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import MainText from "../../components/UI/MainText/MainText";
-import backgroundImage from  '../../assets/background.jpg';
+import backgroundImage from  '../../assets/Mountain.jpg';
 import ButtonWithBackground from "../../components/UI/ButtonWithBackground/ButtonWithBackground";
 import validate from "../../utility/validation";
 import { tryAuth } from "../../store/actions/index";
