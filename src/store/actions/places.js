@@ -1,6 +1,6 @@
 import { SET_PLACES, REMOVE_PLACE  } from './actionTypes';
 import { uiStartLoading, uiStopLoading } from './index';
-
+import { storeUrl, dbUrl } from '../../../keys'
 //import axios from 'axios';
 
 // export const addPlace = (placeName, location,image ) => async dispatch => {
@@ -9,7 +9,7 @@ import { uiStartLoading, uiStopLoading } from './index';
 //         location: location
 //     };
 //     console.log(image.content)
-//     const res = await axios.post("https://my-project-1558248234390.firebaseio.com//places.json", placeData)
+//     const res = await axios.post(dbUrl, placeData)
 //     console.log("hello",res);
 //     dispatch ({ type: ADD_PLACE, payload: res.data});
 
@@ -18,7 +18,7 @@ import { uiStartLoading, uiStopLoading } from './index';
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
         dispatch(uiStartLoading());
-        fetch("https://us-central1-my-project-1558248234390.cloudfunctions.net/storeImage", {
+        fetch(storeUrl, {
             method: "POST",
             body: JSON.stringify({
                 image: image.base64
@@ -38,7 +38,7 @@ export const addPlace = (placeName, location, image) => {
                 image: parsedRes.imageUrl
             };
             console.log(placeData)
-            return fetch("https://my-project-1558248234390.firebaseio.com//places.json", {
+            return fetch(dbUrl, {
                 method: "POST",
                 body: JSON.stringify(placeData)
             })
@@ -58,7 +58,7 @@ export const addPlace = (placeName, location, image) => {
 
 export const getPlaces = () => {
     return dispatch => {
-        fetch("https://my-project-1558248234390.firebaseio.com//places.json")
+        fetch(dbUrl)
         .catch(err => {
             alert("Something went wrong, sorry :/");
             console.log(err);
@@ -91,7 +91,7 @@ export const setPlaces = places => {
 export const deletePlace = (key) => {
     return dispatch => {
 
-        fetch("https://my-project-1558248234390.firebaseio.com//places/" + key + ".json", {
+        fetch(dbUrl + key + ".json", {
             method: "DELETE"
         })
         .catch(err => {
