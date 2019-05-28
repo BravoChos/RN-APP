@@ -1,5 +1,8 @@
 import { TRY_AUTH } from './actionTypes';
 import {authUrl} from '../../../keys';
+import { uiStartLoading, uiStopLoading } from "./index";
+import startMainTabs from "../../screens/MainTabs/startMainTabs";
+
 export const tryAuth = (authData) => {
     return dispatch => {
         dispatch(authSignup(authData));
@@ -8,6 +11,7 @@ export const tryAuth = (authData) => {
 
 export const authSignup = (authData) => {
     return dispatch => {
+        dispatch(uiStartLoading());
         fetch(authUrl, {
             method: "POST",
             body: JSON.stringify({
@@ -22,10 +26,16 @@ export const authSignup = (authData) => {
         .catch(err => {
             console.log(err);
             alert("Authentication failed, please try again!");
+            dispatch(uiStopLoading());
         })
         .then(res => res.json())
         .then(parsedRes => {
-            console.log(parsedRes);
+            dispatch(uiStopLoading());
+            if (parsedRes.error) {
+                alert("Authentication failed, please try again!");
+            } else {
+                startMainTabs();
+            }
         });
     };
 };
