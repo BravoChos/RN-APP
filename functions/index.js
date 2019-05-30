@@ -5,7 +5,7 @@ const UUID = require("uuid-v4");
 
 const gcconfig = {
   projectId: "my-project-1558248234390",
-  keyFilename: "rnapp-places.json"
+  keyFilename: "rnapp-place.json"
 };
 
 const gcs = require("@google-cloud/storage")(gcconfig);
