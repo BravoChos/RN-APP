@@ -17,19 +17,24 @@ import { storeUrl, dbUrl } from '../../../keys'
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
+        let authToken;
         dispatch(uiStartLoading());
         dispatch(authGetToken())
         .catch(() => {
             alert("No valid token found!");
           })
         .then(token => {
+            authToken = token;
             return fetch(
                 storeUrl,
                 {
-                method: "POST",
-                body: JSON.stringify({
-                    image: image.base64
-                })
+                    method: "POST",
+                    body: JSON.stringify({
+                        image: image.base64
+                    }),
+                    headers: {
+                        Authorization: "Bearer " + authToken
+                    }
                 }
             );
         })        
@@ -47,7 +52,7 @@ export const addPlace = (placeName, location, image) => {
                 image: parsedRes.imageUrl
             };
             console.log(placeData)
-            return fetch(dbUrl, {
+            return fetch(dbUrl+"?auth="+authToken, {
                 method: "POST",
                 body: JSON.stringify(placeData)
             })
@@ -69,6 +74,7 @@ export const getPlaces = () => {
     return dispatch => {
         dispatch(authGetToken())
         .then(token => {
+            console.log("token",token)
             return fetch(
                 dbUrl + 
                 "?auth=" +
@@ -76,7 +82,7 @@ export const getPlaces = () => {
             );
         })
         .catch(() => {
-            alert("No valid token found!");
+            alert("No valid token found! get places");
         })
         .then(res => res.json())
         .then(parsedRes => {

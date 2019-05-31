@@ -10,6 +10,7 @@
     "postinstall": "./node_modules/react-native-maps/enable-google-maps './ios/GoogleMaps/**'"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.4.2",
     "axios": "^0.18.0",
     "react": "16.8.3",
     "react-native": "0.59.5",
