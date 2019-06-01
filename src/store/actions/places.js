@@ -74,7 +74,7 @@ export const getPlaces = () => {
     return dispatch => {
         dispatch(authGetToken())
         .then(token => {
-            console.log("token",token)
+            //console.log("token",token)
             return fetch(
                 dbUrl + 
                 "?auth=" +
