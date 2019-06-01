@@ -15,10 +15,10 @@ Navigation.registerComponent("rnapp.AuthScreen", () => AuthScreen, store, Provid
 Navigation.registerComponent("rnapp.SharePlaceScreen", () => SharePlaceScreen, store, Provider);
 Navigation.registerComponent("rnapp.FindPlaceScreen", () => FindPlaceScreen, store, Provider);
 Navigation.registerComponent("rnapp.PlaceDetailScreen", () => PlaceDetailScreen, store, Provider);
-Navigation.registerComponent("rnapp.SideDrawer", () => SideDrawer);
+Navigation.registerComponent("rnapp.SideDrawer", () => SideDrawer, store, Provider);
 
 // Start a App
-Navigation.startSingleScreenApp({
+export default() => Navigation.startSingleScreenApp({
   screen: {
     screen: "rnapp.AuthScreen",
     title: "Login"
