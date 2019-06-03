@@ -49,15 +49,14 @@ export const tryAuth = (authData, authMode) => {
 export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
       //console.log("authStoreToken", token)
-      dispatch(authSetToken(token,expiryDate));
+
       const now = new Date();
       const expiryDate = now.getTime() + expiresIn * 1000;
-      //console.log(expiryDate)
+      dispatch(authSetToken(token,expiryDate));
+      console.log(expiryDate,"rxp")
       AsyncStorage.setItem("ap:auth:token", token);
       AsyncStorage.setItem("ap:auth:expiryDate", expiryDate.toString());
       AsyncStorage.setItem("ap:auth:refreshToken", refreshToken);
-      console.log("authStoreToken")
-      console.log(AsyncStorage.getItem("ap:auth:token"));
   };
 };
 
@@ -73,12 +72,13 @@ export const authGetToken = () => {
   return (dispatch, getState) => {
       const promise = new Promise((resolve, reject) => {
           const token = getState().auth.token;
+          const expiryDate = getState().auth.expiryDate;
           if (!token || new Date(expiryDate) <= new Date()) {
               let fetchedToken;
               AsyncStorage.getItem("ap:auth:token")
               .catch(err => reject())
               .then(tokenFromStorage => {
-                //console.log("token From Storage",tokenFromStorage)
+                console.log("token From Storage",tokenFromStorage)
                   fetchedToken = tokenFromStorage;
                   if (!tokenFromStorage) {
                       reject();
@@ -102,11 +102,13 @@ export const authGetToken = () => {
               })
               .catch(err => reject());
           } else {
+            console.log("???????")
               resolve(token);
           }
       });  
       return promise
       .catch(err => {
+        console.log(err)
           return AsyncStorage.getItem("ap:auth:refreshToken")
               .then(refreshToken => {
                 return fetch(
@@ -142,7 +144,7 @@ export const authGetToken = () => {
         if (!token) {
           throw new Error();
         } else {
-          console.log("get token success")
+          //console.log("get token success")
           return token;
         }
       });

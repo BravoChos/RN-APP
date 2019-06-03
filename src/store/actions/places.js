@@ -1,6 +1,6 @@
-import { SET_PLACES, REMOVE_PLACE  } from './actionTypes';
+import { SET_PLACES, REMOVE_PLACE, PLACE_ADDED, START_ADD_PLACE  } from './actionTypes';
 import { uiStartLoading, uiStopLoading, authGetToken } from './index';
-import { storeUrl, dbUrl } from '../../../keys'
+import { storeUrl, dbUrl, dbdUrl } from '../../../keys'
 //import axios from 'axios';
 
 // export const addPlace = (placeName, location,image ) => async dispatch => {
@@ -14,6 +14,11 @@ import { storeUrl, dbUrl } from '../../../keys'
 //     dispatch ({ type: ADD_PLACE, payload: res.data});
 
 // };
+export const startAddPlace = () => {
+    return {
+      type: START_ADD_PLACE
+    };
+};
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
@@ -43,30 +48,50 @@ export const addPlace = (placeName, location, image) => {
             alert("Something went wrong, please try again!");
             dispatch(uiStopLoading());
         })
-        .then(res => res.json())
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error();
+            }
+        })
         .then(parsedRes => {
             console.log(parsedRes)
             const placeData = {
                 name: placeName,
                 location: location,
-                image: parsedRes.imageUrl
+                image: parsedRes.imageUrl,
+                imagePath: parsedRes.imagePath
             };
-            console.log(placeData)
+            console.log(placeData.imagePath,"Hello image path");
             return fetch(dbUrl+"?auth="+authToken, {
                 method: "POST",
                 body: JSON.stringify(placeData)
             })
         })  
-        .then(res => res.json())
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error();
+            }
+        })
         .then(parsedRes => {
-            console.log(parsedRes);
+            //console.log(parsedRes);
             dispatch(uiStopLoading());
+            dispatch(placeAdded());
         })
         .catch(err => {
             console.log(err);
             alert("Something went wrong, please try again!");
             dispatch(uiStopLoading());
         });
+    };
+};
+
+export const placeAdded = () => {
+    return {
+      type: PLACE_ADDED
     };
 };
 
@@ -84,7 +109,13 @@ export const getPlaces = () => {
         .catch(() => {
             alert("No valid token found! get places");
         })
-        .then(res => res.json())
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+            throw new Error();
+            }
+        })
         .then(parsedRes => {
             const places = [];
             for (let key in parsedRes) {
@@ -122,7 +153,7 @@ export const deletePlace = (key) => {
         .then(token => {
             dispatch(removePlace(key));
             return fetch(
-                dbUrl + 
+                dbdUrl + 
                 key + 
                 ".json?auth=" + 
                 token, 
@@ -131,9 +162,17 @@ export const deletePlace = (key) => {
                 }
             )
         })
-        .then(res => res.json())
+        .then(res => {
+            if (res.ok) {
+                console.log(res.ok,"ok")
+                return res.json();
+            } else {
+                console.log("error")
+                throw new Error();
+            }
+        })
         .then(parsedRes => {
-            console.log("Done!", parsedRes);
+            console.log("Done!");
         })
         .catch(err => {
             alert("Something went wrong, sorry :/");
