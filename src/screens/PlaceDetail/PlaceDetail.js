@@ -169,7 +169,7 @@ class PlaceDetail extends Component {
   };
 
   render() {
-    console.log('selectedPlace.location: ',this.props.selectedPlace)
+    console.log('selectedPlace.location: ',this.props.selectedPlace.imagePath)
     return (
       <View
         style={[
