@@ -4,8 +4,10 @@ const cors = require("cors")({ origin: true });
 const fs = require("fs");
 const UUID = require("uuid-v4");
 
+const myProjectId =  require('./credentials');
+
 const gcconfig = {
-  projectId: "my-project-1558248234390",
+  projectId: myProjectId,
   keyFilename: "rnapp-place.json"
 };
 
@@ -44,7 +46,7 @@ exports.storeImage = functions.https.onRequest((request, response) => {
           return response.status(500).json({ error: err });
         }
       );
-      const bucket = gcs.bucket("my-project-1558248234390.appspot.com");
+      const bucket = gcs.bucket(myProjectId);
       const uuid = UUID();
       bucket.upload(
         "/tmp/uploaded-image.jpg",
@@ -96,6 +98,6 @@ exports.deleteImage = functions.database
     const imagePath = placeData.imagePath;
     //const imagePath = event.data.imagePath
 
-    const bucket = gcs.bucket("my-project-1558248234390.appspot.com");
+    const bucket = gcs.bucket(myProjectId);
     return bucket.file(imagePath).delete();
   });
